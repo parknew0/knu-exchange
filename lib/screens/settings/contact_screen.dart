@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/settings/settings_common_widgets.dart';
@@ -29,6 +30,11 @@ class ContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final supportEmail = dotenv.env['SUPPORT_EMAIL'] ?? '';
+    final pmEmail = dotenv.env['PM_EMAIL'];
+    final devKimEmail = dotenv.env['DEV_KIM_EMAIL'];
+    final devJinEmail = dotenv.env['DEV_JIN_EMAIL'];
+
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA), // 앱 전체 공통 배경색
       appBar: AppBar(
@@ -63,12 +69,12 @@ class ContactScreen extends StatelessWidget {
                     'Email Support',
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: AppColors.darkGrey),
                   ),
-                  subtitle: const Text(
-                    'TeamMillionM@gmail.com\nContact us for feedback, questions, or to report abusive or inappropriate content.',
-                    style: TextStyle(fontSize: 13, color: Colors.grey),
+                  subtitle: Text(
+                    '$supportEmail\nContact us for feedback, questions, or to report abusive or inappropriate content.',
+                    style: const TextStyle(fontSize: 13, color: Colors.grey),
                   ),
                   trailing: TextButton(
-                    onPressed: () => _copyToClipboard(context, 'TeamMillionM@gmail.com'),
+                    onPressed: () => _copyToClipboard(context, supportEmail),
                     child: const Text(
                       'Copy',
                       style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
@@ -99,20 +105,19 @@ class ContactScreen extends StatelessWidget {
                 _buildTeamTile(
                   name: 'Juyeon Shin',
                   role: 'Project Manager',
-                  email: '102wndus@naver.com',
+                  email: pmEmail,
                 ),
                 const SettingsDivider(),
-                // [수정] 김대한 개발자 이메일 추가
                 _buildTeamTile(
                   name: 'Daehan Kim',
                   role: 'Developer',
-                  email: 'Kimtony598@gmail.com',
+                  email: devKimEmail,
                 ),
                 const SettingsDivider(),
                 _buildTeamTile(
                   name: 'Hyeongjun Jin',
                   role: 'Developer',
-                  email: 'wlsgudwns112@naver.com',
+                  email: devJinEmail,
                 ),
               ],
             ),

@@ -54,6 +54,7 @@ firebase-debug.log
 # Environment and secrets
 .env
 .env.*
+!.env.example
 *.pem
 *.p12
 *.key
