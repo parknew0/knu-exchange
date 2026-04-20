@@ -1,0 +1,7 @@
+# Copy this file to `key.properties` in the `android/` folder and fill in real values.
+# The `key.properties` file is gitignored and must NOT be committed.
+
+storePassword=
+keyPassword=
+keyAlias=
+storeFile=

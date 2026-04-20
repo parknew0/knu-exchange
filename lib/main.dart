@@ -37,7 +37,7 @@ void main() async {
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  await FlutterNaverMap().init(clientId: '8px8q0aopz');
+  await FlutterNaverMap().init(clientId: dotenv.env['NAVER_MAP_CLIENT_ID'] ?? '');
 
   runApp(
     MultiProvider(

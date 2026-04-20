@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart'; // debugPrint 사용을 위해 추가
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:csv/csv.dart';
 import '../models/menu_item.dart';
 
 class MenuService {
-  // 구글 시트 '웹에 게시' 시 생성된 CSV URL (반드시 output=csv 확인)
-  final String _sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNfHaNZv1nOJdVq1ubjdPBQmE6lu1VoN1AySWiaW2l9oQLICAwUF_Kg_mtxpwgQUv6_WLtdmtYfpRR/pub?output=csv';
+  final String _sheetUrl = dotenv.env['MENU_SHEET_URL'] ?? '';
 
   Future<List<MenuItem>> fetchRemoteMenu() async {
     try {
