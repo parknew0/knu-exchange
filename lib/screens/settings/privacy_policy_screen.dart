@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
 
-  static const String _privacyText = '''
+  String _buildPrivacyText() {
+    final supportEmail = dotenv.env['SUPPORT_EMAIL'] ?? '';
+    return '''
 # **Privacy Policy**
 
 **KNU Exchange Privacy Policy**
@@ -114,8 +117,9 @@ We may update this Privacy Policy from time to time. Updates will be posted at t
 
 If you have questions regarding this Privacy Policy, please contact:
 
-Email: [TeamMillionM@gmail.com](mailto:TeamMillionM@gmail.com)
+Email: [$supportEmail](mailto:$supportEmail)
 ''';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +130,7 @@ Email: [TeamMillionM@gmail.com](mailto:TeamMillionM@gmail.com)
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Markdown(
-          data: _privacyText,
+          data: _buildPrivacyText(),
         ),
       ),
     );
